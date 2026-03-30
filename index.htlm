@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palomino y Asociados – Despacho Jurídico | Querétaro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0d1f3c;
+      --navy2:  #162a50;
+      --oxford: #3c4a5e;
+      --gold:   #c9a84c;
+      --gold2:  #e8c96b;
+      --cream:  #f5f2eb;
+      --white:  #ffffff;
+      --gray:   #8a9ab5;
+      --light:  #eef1f6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--navy);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 5%;
+      background: rgba(13,31,60,.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,168,76,.25);
+      transition: all .3s;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .nav-seal {
+      width: 42px; height: 42px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .05em;
+    }
+    .nav-name {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .nav-name span { color: var(--gold); }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: color .25s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy) !important;
+      padding: .5rem 1.25rem;
+      border-radius: 2px;
+    }
+    .nav-cta:hover { background: var(--gold2) !important; color: var(--navy) !important; }
+
+    /* ── HERO ── */
+    #inicio {
+      min-height: 100vh;
+      background:
+        linear-gradient(160deg, rgba(13,31,60,.92) 0%, rgba(22,42,80,.85) 60%, rgba(13,31,60,.97) 100%),
+        url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center;
+      padding: 0 5%;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-decor {
+      position: absolute;
+      right: -80px; top: 50%;
+      transform: translateY(-50%);
+      width: 520px; height: 520px;
+      border: 1px solid rgba(201,168,76,.15);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-decor::before {
+      content: '';
+      position: absolute; inset: 30px;
+      border: 1px solid rgba(201,168,76,.10);
+      border-radius: 50%;
+    }
+    .hero-content {
+      max-width: 680px;
+      animation: fadeUp .9s ease both;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .7rem;
+      color: var(--gold);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 32px; height: 1px; background: var(--gold);
+    }
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      color: var(--white);
+      line-height: 1.15;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+    .hero-content h1 em {
+      font-style: italic; color: var(--gold);
+    }
+    .hero-content p {
+      color: rgba(255,255,255,.7);
+      font-size: 1.1rem;
+      line-height: 1.75;
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy);
+      padding: .9rem 2rem;
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all .25s;
+      border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.4);
+      color: var(--white);
+      padding: .9rem 2rem;
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all .25s;
+      display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-stats {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      display: flex;
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(6px);
+      border-top: 1px solid rgba(201,168,76,.2);
+    }
+    .stat-item {
+      flex: 1;
+      padding: 1.4rem 2rem;
+      text-align: center;
+      border-right: 1px solid rgba(201,168,76,.15);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--gold);
+      font-weight: 800;
+      display: block;
+    }
+    .stat-label {
+      font-size: .7rem;
+      color: rgba(255,255,255,.55);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      display: block;
+      margin-top: .2rem;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 5%; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: .7rem;
+      color: var(--gold);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .section-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      color: var(--navy);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    h2.section-title em { font-style: italic; color: var(--gold); }
+    .section-sub {
+      color: var(--oxford);
+      font-size: 1rem;
+      line-height: 1.75;
+      font-weight: 300;
+      max-width: 560px;
+    }
+
+    /* ── NOSOTROS ── */
+    #nosotros {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-image {
+      position: relative;
+    }
+    .about-img-frame {
+      width: 100%; aspect-ratio: 4/5;
+      background:
+        linear-gradient(145deg, var(--navy2), var(--navy)),
+        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80') center/cover;
+      background-blend-mode: multiply;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .about-accent {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 160px; height: 160px;
+      border: 4px solid var(--gold);
+      border-radius: 2px;
+      z-index: 0;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: 30px; left: -30px;
+      background: var(--navy);
+      padding: 1.25rem 1.5rem;
+      border-left: 4px solid var(--gold);
+      z-index: 2;
+    }
+    .about-badge strong {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      display: block;
+      font-weight: 800;
+    }
+    .about-badge span {
+      font-size: .7rem;
+      color: rgba(255,255,255,.6);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .about-text { padding: 1rem 0; }
+    .about-text p { color: var(--oxford); line-height: 1.8; font-weight: 300; margin-bottom: 1.25rem; }
+    .about-pillars {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      margin-top: 2rem;
+    }
+    .pillar {
+      border-left: 3px solid var(--gold);
+      padding-left: 1rem;
+    }
+    .pillar strong {
+      display: block;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .25rem;
+    }
+    .pillar span { font-size: .8rem; color: var(--gray); }
+
+    /* ── SERVICIOS ── */
+    #servicios { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5px;
+      margin-top: 3.5rem;
+      border: 1.5px solid var(--light);
+    }
+    .service-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      border: 1.5px solid var(--light);
+      position: relative;
+      overflow: hidden;
+      transition: all .3s;
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s ease;
+    }
+    .service-card:hover { background: var(--cream); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 50px; height: 50px;
+      background: var(--navy);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      transition: background .3s;
+    }
+    .service-card:hover .service-icon { background: var(--gold); }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: .75rem;
+      font-weight: 700;
+    }
+    .service-card p {
+      font-size: .85rem;
+      color: var(--oxford);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .service-tags {
+      display: flex; flex-wrap: wrap; gap: .4rem;
+      margin-top: 1.25rem;
+    }
+    .tag {
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,.35);
+      padding: .2rem .6rem;
+      border-radius: 2px;
+    }
+
+    /* ── POLIZAS HIGHLIGHT ── */
+    .polizas-banner {
+      background: var(--navy);
+      margin-top: 3rem;
+      padding: 3rem;
+      border-left: 5px solid var(--gold);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+    .polizas-icon { font-size: 2.5rem; }
+    .polizas-banner h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--white); font-size: 1.3rem;
+      margin-bottom: .5rem;
+    }
+    .polizas-banner p { color: rgba(255,255,255,.65); font-size: .9rem; line-height: 1.6; }
+
+    /* ── EQUIPO ── */
+    #equipo { background: var(--cream); }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+    .team-card {
+      background: var(--white);
+      overflow: hidden;
+      border-radius: 2px;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .team-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(13,31,60,.12); }
+    .team-photo {
+      height: 240px;
+      background: linear-gradient(145deg, var(--navy2), var(--navy));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      color: var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    .team-photo::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 4px; background: var(--gold);
+    }
+    .team-info { padding: 1.5rem; }
+    .team-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--navy);
+      font-weight: 700; margin-bottom: .25rem;
+    }
+    .team-role {
+      font-size: .7rem; color: var(--gold);
+      letter-spacing: .12em; text-transform: uppercase;
+      font-weight: 700; display: block; margin-bottom: .75rem;
+    }
+    .team-info p { font-size: .82rem; color: var(--oxford); line-height: 1.65; font-weight: 300; }
+
+    /* ── FAQ ── */
+    #faq { background: var(--white); }
+    .faq-grid { max-width: 800px; margin: 3.5rem auto 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--light);
+    }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 0;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--navy);
+      gap: 1rem;
+      transition: color .2s;
+    }
+    .faq-q:hover { color: var(--gold); }
+    .faq-icon {
+      width: 24px; height: 24px; flex-shrink: 0;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: .9rem;
+      transition: transform .3s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .4s ease, padding .3s;
+      font-size: .88rem; color: var(--oxford); line-height: 1.75; font-weight: 300;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.25rem; }
+
+    /* ── CONTACTO ── */
+    #contacto {
+      background: var(--navy);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    #contacto .section-label { color: var(--gold2); }
+    #contacto h2.section-title { color: var(--white); }
+    #contacto .section-sub { color: rgba(255,255,255,.55); }
+    .contact-info { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .contact-ic {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: rgba(201,168,76,.15);
+      border: 1px solid rgba(201,168,76,.3);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .contact-item strong { display: block; color: var(--gold); font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: .25rem; }
+    .contact-item span { color: rgba(255,255,255,.7); font-size: .9rem; font-weight: 300; line-height: 1.5; }
+    .contact-form {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(201,168,76,.2);
+      padding: 2.5rem;
+      border-radius: 2px;
+    }
+    .contact-form h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--white); font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-field {
+      display: flex; flex-direction: column; gap: .4rem;
+      margin-bottom: 1rem;
+    }
+    .form-field label {
+      font-size: .7rem; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.5);
+      font-weight: 700;
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      color: var(--white);
+      padding: .75rem 1rem;
+      font-family: 'Lato', sans-serif;
+      font-size: .88rem;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color .25s;
+      resize: none;
+    }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(255,255,255,.3); }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-color: var(--gold); }
+    .form-field select option { background: var(--navy2); }
+    .map-embed {
+      margin-top: 2.5rem;
+      border: 1px solid rgba(201,168,76,.2);
+      border-radius: 2px;
+      overflow: hidden;
+      height: 220px;
+    }
+    .map-embed iframe { width: 100%; height: 100%; border: none; filter: grayscale(30%) invert(5%); }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+      width: 60px; height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,.45);
+      text-decoration: none;
+      animation: pulse-wa 2.5s infinite;
+      transition: transform .2s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+    .wa-float svg { width: 28px; height: 28px; fill: white; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #08152a;
+      padding: 2.5rem 5%;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(201,168,76,.15);
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { color: rgba(255,255,255,.35); font-size: .78rem; }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold); font-size: .95rem; font-weight: 600;
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,.35); font-size: .75rem; text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-wa {
+      0%,100% { box-shadow: 0 6px 24px rgba(37,211,102,.45); }
+      50%      { box-shadow: 0 6px 36px rgba(37,211,102,.7); }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #nosotros, #contacto { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-stats { display: none; }
+      .about-badge { display: none; }
+      .polizas-banner { grid-template-columns: 1fr; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+      nav { padding: 1rem 4%; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 4rem 6%; }
+      .team-grid { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">
+      <div class="nav-seal">P&A</div>
+      <div class="nav-name">Palomino <span>&</span> Asociados<br><small style="font-family:Lato;font-size:.65rem;font-weight:300;color:rgba(255,255,255,.45);letter-spacing:.08em;">Despacho Jurídico</small></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="inicio">
+    <div class="hero-decor"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Despacho Jurídico · Querétaro</div>
+      <h1>Defendemos tus derechos con <em>integridad</em> y experiencia</h1>
+      <p>Soluciones legales integrales para personas físicas y empresas en Querétaro. Más de una década acompañando a nuestros clientes en cada proceso jurídico.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/524421234567?text=Hola%2C%20me%20gustar%C3%ADa%20una%20asesor%C3%ADa" class="btn-gold" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Asesoría por WhatsApp
+        </a>
+        <a href="#servicios" class="btn-outline">Ver nuestros servicios</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">+15</span><span class="stat-label">Años de experiencia</span></div>
+      <div class="stat-item"><span class="stat-num">+800</span><span class="stat-label">Casos resueltos</span></div>
+      <div class="stat-item"><span class="stat-num">8</span><span class="stat-label">Áreas de práctica</span></div>
+      <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Compromiso</span></div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros">
+    <div class="about-image reveal">
+      <div class="about-img-frame" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80');background-blend-mode:multiply;background-size:cover;background-position:center;"></div>
+      <div class="about-accent"></div>
+      <div class="about-badge">
+        <strong>+15</strong>
+        <span>Años sirviendo a Querétaro</span>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <div class="section-label">Quiénes somos</div>
+      <h2 class="section-title">Una firma comprometida con la <em>justicia</em></h2>
+      <p>Somos un despacho jurídico establecido en Santiago de Querétaro, especializado en ofrecer soluciones legales integrales tanto a personas físicas como a empresas. Nuestra metodología combina rigor técnico y trato humano.</p>
+      <p>Nos ubicamos en Av. Luis Pasteur Sur, zona Corregidora, y atendemos con disponibilidad amplia para urgencias legales, priorizando la comunicación vía WhatsApp y correo electrónico para agilizar cada consulta.</p>
+      <div class="about-pillars">
+        <div class="pillar"><strong>Integridad</strong><span>Actuamos con ética y transparencia en cada caso</span></div>
+        <div class="pillar"><strong>Experiencia</strong><span>Más de 15 años de práctica jurídica en Querétaro</span></div>
+        <div class="pillar"><strong>Estrategia</strong><span>Soluciones diseñadas a la medida de cada cliente</span></div>
+        <div class="pillar"><strong>Resultados</strong><span>Historial probado en diversas áreas del derecho</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="reveal">
+      <div class="section-label">Áreas de práctica</div>
+      <h2 class="section-title">Soluciones legales <em>integrales</em></h2>
+      <p class="section-sub">Contamos con abogados especializados en cada área para brindarle la asesoría más precisa y eficaz.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-icon">⚖️</div>
+        <h3>Derecho Civil y Familiar</h3>
+        <p>Acompañamos a las familias en sus momentos más difíciles, con sensibilidad y profesionalismo en cada proceso.</p>
+        <div class="service-tags">
+          <span class="tag">Divorcios</span>
+          <span class="tag">Herencias</span>
+          <span class="tag">Testamentos</span>
+          <span class="tag">Arrendamiento</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏛️</div>
+        <h3>Derecho Penal</h3>
+        <p>Defensa sólida ante cualquier imputación. Representación efectiva frente al Ministerio Público y tribunales penales.</p>
+        <div class="service-tags">
+          <span class="tag">Defensas</span>
+          <span class="tag">Denuncias</span>
+          <span class="tag">Ministerio Público</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">👷</div>
+        <h3>Derecho Laboral</h3>
+        <p>Asesoría especializada para trabajadores y empleadores en todo tipo de conflictos y relaciones laborales.</p>
+        <div class="service-tags">
+          <span class="tag">Despidos</span>
+          <span class="tag">Liquidaciones</span>
+          <span class="tag">Contratos</span>
+          <span class="tag">Utilidades</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📄</div>
+        <h3>Derecho Mercantil</h3>
+        <p>Recuperación de cartera y cobro de documentos mercantiles. Protegemos el patrimonio de su empresa.</p>
+        <div class="service-tags">
+          <span class="tag">Pagarés</span>
+          <span class="tag">Cheques</span>
+          <span class="tag">Cartera vencida</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌐</div>
+        <h3>Derecho Migratorio</h3>
+        <p>Tramitamos visas, residencias temporales y permanentes. Asesoría puntual para extranjeros en México.</p>
+        <div class="service-tags">
+          <span class="tag">Visas</span>
+          <span class="tag">Residencias</span>
+          <span class="tag">Regularización</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔏</div>
+        <h3>Juicios de Amparo y Trámites Notariales</h3>
+        <p>Amparo como última línea de defensa constitucional. Escrituraciones, fe de hechos y constitución de sociedades.</p>
+        <div class="service-tags">
+          <span class="tag">Amparo</span>
+          <span class="tag">Escrituras</span>
+          <span class="tag">Sociedades</span>
+          <span class="tag">ISSSTE</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="polizas-banner reveal">
+      <div class="polizas-icon">🛡️</div>
+      <div>
+        <h3>Pólizas Jurídicas para Empresas e Individuos</h3>
+        <p>Ofrecemos esquemas de aseguramiento legal a la medida: pólizas de arrendamiento para proteger a propietarios de inmuebles, y pólizas corporativas para blindar su empresa ante contingencias legales.</p>
+      </div>
+      <a href="https://wa.me/524421234567?text=Me%20interesa%20una%20p%C3%B3liza%20jur%C3%ADdica" class="btn-gold" target="_blank" style="white-space:nowrap;">Conocer más</a>
+    </div>
+  </section>
+
+  <!-- EQUIPO -->
+  <section id="equipo">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">Nuestro equipo</div>
+      <h2 class="section-title">Abogados <em>comprometidos</em> con su caso</h2>
+      <p class="section-sub" style="margin:0 auto">Profesionistas con sólida formación académica y amplia experiencia en los tribunales de Querétaro.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-photo">P</div>
+        <div class="team-info">
+          <h3>Lic. Palomino</h3>
+          <span class="team-role">Socio Fundador · Civil & Familiar</span>
+          <p>Más de 15 años de trayectoria en Derecho Civil y Familiar. Especialista en juicios de herencias, testamentos y divorcios en el estado de Querétaro.</p>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-photo" style="background:linear-gradient(145deg,#1e3a5f,#0d2540)">A</div>
+        <div class="team-info">
+          <h3>Asociado – Derecho Penal</h3>
+          <span class="team-role">Abogado Penalista</span>
+          <p>Especialista en defensa penal y representación ante el Ministerio Público. Amplia experiencia en el nuevo sistema acusatorio-adversarial.</p>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-photo" style="background:linear-gradient(145deg,#2a3a55,#131f38)">L</div>
+        <div class="team-info">
+          <h3>Asociado – Derecho Laboral</h3>
+          <span class="team-role">Abogado Laboralista</span>
+          <p>Dedicado a la defensa de trabajadores y asesoría de empresas en materia laboral. Experto en conciliación y juicios ante el TLFCA.</p>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-photo" style="background:linear-gradient(145deg,#1a2e50,#0a1a30)">M</div>
+        <div class="team-info">
+          <h3>Asociado – Mercantil y Migratorio</h3>
+          <span class="team-role">Abogado Corporativo</span>
+          <p>Especialidad en derecho mercantil, recuperación de cartera y trámites migratorios. Constitución de sociedades y trámites notariales.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">Preguntas frecuentes</div>
+      <h2 class="section-title">Resolvemos sus <em>dudas</em></h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Ofrecen una primera consulta gratuita?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">Ofrecemos una orientación inicial telefónica o por WhatsApp sin costo, en la que canalizamos su caso al área del derecho adecuada y le explicamos los pasos a seguir. Las consultas formales se agendan conforme a disponibilidad.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Atienden urgencias legales fuera de horario?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">Sí. Contamos con disponibilidad amplia para urgencias legales. Puede comunicarse vía WhatsApp en cualquier momento y uno de nuestros abogados le atenderá a la brevedad.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué es una póliza jurídica y cómo me beneficia?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">Una póliza jurídica es un esquema de aseguramiento legal que le garantiza asesoría y representación ante contingencias legales por una mensualidad fija. Para propietarios de inmuebles, la póliza de arrendamiento les protege ante inquilinos morosos. Para empresas, cubre revisión de contratos, demandas laborales y más.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Pueden ayudarme con trámites de pensión del ISSSTE?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">Absolutamente. Contamos con experiencia específica en trámites de pensiones del ISSSTE, desde el inicio del procedimiento hasta la resolución definitiva, incluyendo recursos de revisión en caso necesario.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Atienden clientes fuera de Querétaro?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">Principalmente atendemos casos en Querétaro y su zona metropolitana. Para asuntos en otros estados, evaluamos cada caso y, de ser necesario, trabajamos en colaboración con corresponsales en las entidades correspondientes.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Cómo agendo una cita formal?
+          <div class="faq-icon">+</div>
+        </div>
+        <div class="faq-a">Puede contactarnos vía WhatsApp, correo electrónico o a través del formulario en esta página. Le confirmaremos disponibilidad y agendaremos su cita en nuestra oficina ubicada en Av. Luis Pasteur Sur, zona Corregidora.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="reveal">
+      <div class="section-label">Contáctenos</div>
+      <h2 class="section-title">Estamos aquí para <em>ayudarle</em></h2>
+      <p class="section-sub">No enfrente sus problemas legales solo. Contáctenos hoy y reciba orientación inmediata de nuestros especialistas.</p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-ic">📍</div>
+          <div><strong>Dirección</strong><span>Av. Luis Pasteur Sur, Zona Corregidora<br>Santiago de Querétaro, Qro.</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ic">💬</div>
+          <div><strong>WhatsApp</strong><span>Vía preferida para consultas y urgencias<br>Respuesta en menos de 1 hora</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ic">📧</div>
+          <div><strong>Correo Electrónico</strong><span>contacto@palominoyasociados.mx</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ic">🕐</div>
+          <div><strong>Horario de Atención</strong><span>Lunes a Viernes · 9:00 – 19:00 h<br>Sábados con cita previa · Urgencias 24/7</span></div>
+        </div>
+      </div>
+      <div class="map-embed">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.3!2d-100.3889!3d20.5888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d35b8e8e8e8e8e%3A0x0!2sAv.%20Luis%20Pasteur%20Sur%2C%20Corregidora%2C%20Quer%C3%A9taro!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <h3>Envíenos su consulta</h3>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Nombre</label>
+          <input type="text" placeholder="Su nombre completo" />
+        </div>
+        <div class="form-field">
+          <label>Teléfono</label>
+          <input type="tel" placeholder="442 000 0000" />
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Correo electrónico</label>
+        <input type="email" placeholder="correo@ejemplo.com" />
+      </div>
+      <div class="form-field">
+        <label>Área legal de interés</label>
+        <select>
+          <option value="">Seleccione una área</option>
+          <option>Derecho Civil y Familiar</option>
+          <option>Derecho Penal</option>
+          <option>Derecho Laboral</option>
+          <option>Derecho Mercantil</option>
+          <option>Derecho Migratorio</option>
+          <option>Juicio de Amparo</option>
+          <option>Trámites Notariales</option>
+          <option>Pólizas Jurídicas</option>
+          <option>Pensiones ISSSTE</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Descripción breve de su caso</label>
+        <textarea rows="5" placeholder="Cuéntenos brevemente sobre su situación legal..."></textarea>
+      </div>
+      <button class="btn-gold" style="width:100%;justify-content:center;" onclick="handleSubmit()">Enviar consulta →</button>
+      <p style="font-size:.72rem;color:rgba(255,255,255,.3);text-align:center;margin-top:1rem;">Sus datos son confidenciales y están protegidos por el secreto profesional.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">Palomino y Asociados · Despacho Jurídico</div>
+    <p>© 2025 · Querétaro, México · Todos los derechos reservados</p>
+    <div class="footer-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a class="wa-float" href="https://wa.me/524421234567?text=Hola%2C%20quisiera%20una%20asesor%C3%ADa%20jur%C3%ADdica" target="_blank" title="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <script>
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      item.classList.toggle('open');
+    }
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    function handleSubmit() {
+      const btn = document.querySelector('.contact-form .btn-gold');
+      btn.textContent = '✓ Mensaje enviado correctamente';
+      btn.style.background = '#2e7d32';
+      btn.style.color = '#fff';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Enviar consulta →';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
